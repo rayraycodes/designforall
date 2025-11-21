@@ -90,10 +90,41 @@ Every accessibility constraint is an opportunity to create better design:
 - **Affordance** - Proper labels and structure make interfaces more intuitive
 - **Vertical Rhythm** - Relative units create scalable, harmonious layouts
 
-## Contributing
+## 🤝 Contributing
 
-This is an educational resource. Feel free to use it as a reference or extend it with additional examples.
+We welcome contributions! Design for All is an open-source project, and we're excited to see what you'll build.
 
-## License
+**First time contributing?** Check out our [Contributing Guide](./CONTRIBUTING.md) for detailed instructions.
 
-MIT
+### Quick Start for Contributors
+
+1. Fork the repository
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/designforall.git`
+3. Install dependencies: `npm install`
+4. Create a branch: `git checkout -b feature/your-feature`
+5. Make your changes
+6. Commit: `git commit -m "feat: your feature description"`
+7. Push: `git push origin feature/your-feature`
+8. Open a Pull Request
+
+### Types of Contributions We Welcome
+
+- 🐛 Bug fixes
+- ✨ New accessibility examples
+- 📝 Documentation improvements
+- 🎨 UI/UX enhancements
+- ♿ Accessibility improvements
+- 🌐 Internationalization
+- 🧪 Tests
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for full guidelines.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- University of Michigan for the Blue & Maize color inspiration
+- WCAG 2.2 guidelines
+- The accessibility community for continuous learning and improvement

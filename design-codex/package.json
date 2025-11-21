@@ -1,5 +1,6 @@
 {
-  "name": "design-codex",
+  "name": "design-for-all",
+  "description": "An interactive learning platform demonstrating how accessibility principles create better, more beautiful user interfaces",
   "private": true,
   "version": "0.0.0",
   "type": "module",
