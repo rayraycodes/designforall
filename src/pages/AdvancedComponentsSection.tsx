@@ -44,6 +44,36 @@ import {
 
 const advancedExamples = [
   {
+    title: 'Reduced Motion Respect',
+    description: 'Respect prefers-reduced-motion media query',
+    designLogic: 'Some users experience motion sickness or vestibular disorders. Respecting prefers-reduced-motion shows empathy and creates a more inclusive experience.',
+    badCode: `.slide-in {
+  animation: slide 0.3s ease-out;
+}
+/* No reduced motion support */`,
+    goodCode: `@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.slide-in {
+  animation: slide 0.3s ease-out;
+}`,
+    BadComponent: () => (
+      <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded">
+        <div className="animate-pulse bg-indigo-500 h-20 rounded"></div>
+        <p className="text-xs mt-2 text-slate-600 dark:text-slate-400">Always animates, ignores user preference</p>
+      </div>
+    ),
+    GoodComponent: () => (
+      <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded">
+        <div className="bg-indigo-500 h-20 rounded"></div>
+        <p className="text-xs mt-2 text-slate-600 dark:text-slate-400">✓ Respects prefers-reduced-motion</p>
+      </div>
+    ),
+  },
+  {
     title: 'Accordions / Disclosure Widgets',
     description: 'Collapsible content sections with proper ARIA attributes',
     designLogic: 'Accordions need proper button semantics, aria-expanded, and aria-controls to communicate state to assistive technology. This creates predictable, keyboard-accessible interactions.',
@@ -430,7 +460,7 @@ export default function AdvancedComponentsSection() {
             goodCode={example.goodCode}
             BadComponent={example.BadComponent}
             GoodComponent={example.GoodComponent}
-            sectionNumber={`Advanced.${index + 1}`}
+            sectionNumber={`8.${index + 1}`}
           />
         ))}
       </div>

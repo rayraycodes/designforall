@@ -8,7 +8,6 @@ import LinksSection from './pages/LinksSection';
 import KeyboardSection from './pages/KeyboardSection';
 import ColorSection from './pages/ColorSection';
 import ImagesSection from './pages/ImagesSection';
-import ComponentsSection from './pages/ComponentsSection';
 import TestingSection from './pages/TestingSection';
 import CognitiveSection from './pages/CognitiveSection';
 import ErgonomicsSection from './pages/ErgonomicsSection';
@@ -28,12 +27,11 @@ function App() {
           <Route path="/section/keyboard" element={<KeyboardSection />} />
           <Route path="/section/color" element={<ColorSection />} />
           <Route path="/section/images" element={<ImagesSection />} />
-          <Route path="/section/components" element={<ComponentsSection />} />
+          <Route path="/section/advanced" element={<AdvancedComponentsSection />} />
           <Route path="/section/testing" element={<TestingSection />} />
           <Route path="/section/cognitive" element={<CognitiveSection />} />
           <Route path="/section/ergonomics" element={<ErgonomicsSection />} />
           <Route path="/section/environment" element={<EnvironmentSection />} />
-          <Route path="/section/advanced" element={<AdvancedComponentsSection />} />
         </Routes>
       </Layout>
     </BrowserRouter>

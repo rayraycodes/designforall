@@ -16,12 +16,11 @@ const sections = [
   { id: 'keyboard', name: 'Keyboard Navigation', path: '/section/keyboard', number: '5' },
   { id: 'color', name: 'Color & Contrast', path: '/section/color', number: '6' },
   { id: 'images', name: 'Images & Media', path: '/section/images', number: '7' },
-  { id: 'components', name: 'Advanced Components', path: '/section/components', number: '8' },
+  { id: 'advanced', name: 'Advanced Components', path: '/section/advanced', number: '8' },
   { id: 'testing', name: 'Testing', path: '/section/testing', number: '9' },
   { id: 'cognitive', name: 'Cognitive Load', path: '/section/cognitive', number: '10' },
   { id: 'ergonomics', name: 'Ergonomics', path: '/section/ergonomics', number: '11' },
   { id: 'environment', name: 'Environment', path: '/section/environment', number: '12' },
-  { id: 'advanced', name: 'Advanced Components', path: '/section/advanced', number: '13' },
 ];
 
 export default function Layout({ children }: LayoutProps) {
@@ -126,7 +125,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className="flex items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">DC</span>
+              <span className="text-white font-bold text-sm">DFA</span>
             </div>
             <span className="text-lg font-bold text-slate-900 dark:text-slate-100">
               Design for All
