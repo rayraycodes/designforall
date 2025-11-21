@@ -7,7 +7,7 @@ export function AmateurMegaMenu() {
   const [open, setOpen] = useState(false);
   return (
     <nav>
-      <div 
+      <div
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         className="relative"
@@ -29,17 +29,17 @@ export function AmateurMegaMenu() {
 export function ProMegaMenu() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (open && menuRef.current) {
       const firstLink = menuRef.current.querySelector('a');
       firstLink?.focus();
     }
   }, [open]);
-  
+
   return (
     <nav>
-      <div 
+      <div
         className="relative"
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
@@ -108,7 +108,7 @@ export function AmateurStepper() {
 export function ProStepper() {
   const [step, setStep] = useState(1);
   const steps = ['Step 1', 'Step 2', 'Step 3'];
-  
+
   return (
     <div>
       <nav aria-label="Progress">
@@ -117,16 +117,15 @@ export function ProStepper() {
             const stepNum = i + 1;
             const isComplete = step > stepNum;
             const isCurrent = step === stepNum;
-            
+
             return (
               <li key={i} className="flex items-center" aria-current={isCurrent ? 'step' : undefined}>
                 <div className="flex items-center">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-                      isComplete || isCurrent
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 ${isComplete || isCurrent
                         ? 'bg-indigo-600 text-white'
                         : 'bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
-                    }`}
+                      }`}
                     aria-label={`${label}${isComplete ? ', completed' : isCurrent ? ', current step' : ''}`}
                   >
                     {isComplete ? '✓' : stepNum}
@@ -136,9 +135,8 @@ export function ProStepper() {
                   </span>
                 </div>
                 {i < steps.length - 1 && (
-                  <div className={`w-16 h-1 mx-4 ${
-                    step > stepNum ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'
-                  }`} aria-hidden="true" />
+                  <div className={`w-16 h-1 mx-4 ${step > stepNum ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'
+                    }`} aria-hidden="true" />
                 )}
               </li>
             );
@@ -176,7 +174,7 @@ export function AmateurTooltip() {
 export function ProTooltip() {
   const [show, setShow] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  
+
   return (
     <div className="relative">
       <button
@@ -231,7 +229,7 @@ export function AmateurCardGrid() {
 export function ProCardGrid() {
   const cards = ['Card 1', 'Card 2', 'Card 3', 'Card 4'];
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
-  
+
   return (
     <div className="grid grid-cols-2 gap-4" role="grid">
       {cards.map((card, i) => (
@@ -286,7 +284,7 @@ export function ProChart() {
     { label: 'Q2', value: 80 },
     { label: 'Q3', value: 40 },
   ];
-  
+
   return (
     <figure>
       <div className="flex items-end gap-2 h-32" role="img" aria-label="Bar chart showing quarterly data">
@@ -329,7 +327,7 @@ export function AmateurMediaPlayer() {
 export function ProMediaPlayer() {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
-  
+
   return (
     <div role="application" aria-label="Media player">
       <div className="bg-slate-200 dark:bg-slate-800 p-4 rounded">
@@ -391,58 +389,162 @@ export function AmateurChatWidget() {
 // Chat Widget - Good
 export function ProChatWidget() {
   const [open, setOpen] = useState(false);
-  
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const isFirstRender = useRef(true);
+
+  // Handle focus management
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (open) {
+      // Move focus to the close button when opened
+      // Using setTimeout to ensure DOM is ready
+      const timer = setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 50);
+      return () => clearTimeout(timer);
+    } else {
+      // Return focus to trigger when closed
+      triggerRef.current?.focus();
+    }
+  }, [open]);
+
+  // Handle Escape key to close
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (open && e.key === 'Escape') {
+        e.preventDefault();
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
+
+  // Focus trap
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!open || !dialogRef.current) return;
+
+    if (e.key === 'Tab') {
+      const focusableElements = dialogRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  };
+
   return (
     <div className="relative inline-block min-h-[400px] py-8">
       <div className="relative inline-block">
-        <button 
+        <button
+          ref={triggerRef}
           onClick={() => setOpen(!open)}
-          aria-label="Open chat"
+          aria-label={open ? "Close chat widget" : "Open chat widget"}
           aria-expanded={open}
-          className="w-16 h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-2xl flex items-center justify-center"
+          className="w-16 h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
         >
           💬
         </button>
         {open && (
-          <div className="absolute bottom-full right-0 mb-2 w-[calc(100vw-2rem)] sm:w-80 max-w-sm h-64 sm:h-80 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg shadow-xl flex flex-col z-10">
-          <div className="p-3 sm:p-4 border-b border-slate-300 dark:border-slate-700">
-            <div className="flex items-center justify-between">
-              <h2 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-slate-100">Chat Support</h2>
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="chat-title"
+            onKeyDown={handleKeyDown}
+            className="fixed bottom-24 right-8 w-[calc(100vw-2rem)] sm:w-80 max-w-sm h-[500px] max-h-[80vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl flex flex-col z-[100] overflow-hidden"
+          >
+            {/* Header */}
+            <div className="p-4 bg-indigo-600 text-white flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <h2 id="chat-title" className="font-semibold text-lg">Chat Support</h2>
+              </div>
               <button
+                ref={closeButtonRef}
                 onClick={() => setOpen(false)}
                 aria-label="Close chat"
-                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded p-1"
+                className="text-white/80 hover:text-white hover:bg-white/10 rounded-lg p-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
               >
-                <span className="text-xl">×</span>
+                <span className="text-xl leading-none">×</span>
               </button>
             </div>
-          </div>
-          <div className="flex-1 p-3 sm:p-4 overflow-y-auto">
-            <div className="space-y-2">
-              <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-2 sm:p-3">
-                <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">Hello! How can I help you today?</p>
+
+            {/* Messages Area */}
+            <div className="flex-1 p-4 overflow-y-auto bg-slate-50 dark:bg-slate-950 space-y-4">
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center shrink-0">
+                  🤖
+                </div>
+                <div className="bg-white dark:bg-slate-800 rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-100 dark:border-slate-800 max-w-[85%]">
+                  <p className="text-sm text-slate-700 dark:text-slate-300">
+                    Hello! How can I help you today?
+                  </p>
+                  <span className="text-[10px] text-slate-400 mt-1 block">10:00 AM</span>
+                </div>
               </div>
-              <div className="bg-indigo-100 dark:bg-indigo-900/30 rounded-lg p-2 sm:p-3 ml-auto max-w-[80%]">
-                <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">I have a question about my order.</p>
+
+              <div className="flex gap-3 flex-row-reverse">
+                <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                  👤
+                </div>
+                <div className="bg-indigo-600 text-white rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%]">
+                  <p className="text-sm">
+                    I have a question about accessibility.
+                  </p>
+                  <span className="text-[10px] text-indigo-200 mt-1 block text-right">10:01 AM</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="p-3 sm:p-4 border-t border-slate-300 dark:border-slate-700">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Type a message..."
-                className="flex-1 px-3 py-2 text-sm sm:text-base border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              />
-              <button
-                aria-label="Send message"
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-sm sm:text-base"
+
+            {/* Input Area */}
+            <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shrink-0">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  // Handle submit
+                }}
+                className="flex gap-2"
               >
-                Send
-              </button>
+                <input
+                  type="text"
+                  placeholder="Type a message..."
+                  className="flex-1 px-4 py-2.5 text-sm border border-slate-300 dark:border-slate-600 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                />
+                <button
+                  type="submit"
+                  aria-label="Send message"
+                  className="p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 translate-x-0.5">
+                    <path d="M3.105 2.289a.75.75 0 00-.826.95l1.414 4.925A1.5 1.5 0 005.135 9.25h6.115a.75.75 0 010 1.5H5.135a1.5 1.5 0 00-1.442 1.086l-1.414 4.926a.75.75 0 00.826.95 28.896 28.896 0 0015.293-7.154.75.75 0 000-1.115A28.897 28.897 0 003.105 2.289z" />
+                  </svg>
+                </button>
+              </form>
             </div>
           </div>
-        </div>
         )}
       </div>
     </div>
