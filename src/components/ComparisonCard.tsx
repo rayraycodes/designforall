@@ -139,21 +139,21 @@ export default function ComparisonCard({
             transition={{ duration: 0.2 }}
             className={`${
               isProMode
-                ? 'bg-pro-bg border-pro-border'
-                : 'bg-amateur-bg border-amateur-border'
+                ? 'bg-pro-bg dark:bg-slate-800 border-pro-border'
+                : 'bg-amateur-bg dark:bg-rose-950/40 border-amateur-border dark:border-rose-800'
             } rounded-lg border-2 p-6 transition-colors`}
           >
             {isProMode ? (
               <div className="flex items-start gap-2 mb-4">
-                <CheckCircle2 className="w-5 h-5 text-purple-700 dark:text-purple-500 flex-shrink-0 mt-0.5" />
-                <span className="text-sm font-medium text-purple-800 dark:text-purple-400">
+                <CheckCircle2 className="w-5 h-5 text-purple-700 dark:text-purple-400 flex-shrink-0 mt-0.5" />
+                <span className="text-sm font-medium text-purple-900 dark:text-purple-300">
                   Pro Implementation
                 </span>
               </div>
             ) : (
               <div className="flex items-start gap-2 mb-4">
-                <AlertCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />
-                <span className="text-sm font-medium text-rose-700 dark:text-rose-300">
+                <AlertCircle className="w-5 h-5 text-rose-700 dark:text-rose-400 flex-shrink-0 mt-0.5" />
+                <span className="text-sm font-medium text-rose-900 dark:text-rose-200">
                   Amateur Mistake
                 </span>
               </div>

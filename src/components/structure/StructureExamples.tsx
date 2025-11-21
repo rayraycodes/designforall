@@ -4,9 +4,9 @@
 export function AmateurHeadings1() {
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Page Title</h1>
-      <h4 className="text-lg">Subtitle</h4>
-      <p>Content here...</p>
+      <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Page Title</h1>
+      <h4 className="text-lg text-slate-800 dark:text-slate-200">Subtitle</h4>
+      <p className="text-slate-700 dark:text-slate-300">Content here...</p>
     </div>
   );
 }
@@ -27,9 +27,9 @@ export function ProHeadings1() {
 export function AmateurHeadings2() {
   return (
     <div className="space-y-4">
-      <h1 className="text-xl">Site Logo</h1>
-      <h1 className="text-xl">Page Title</h1>
-      <h1 className="text-xl">Banner</h1>
+      <h1 className="text-xl text-slate-900 dark:text-slate-100">Site Logo</h1>
+      <h1 className="text-xl text-slate-900 dark:text-slate-100">Page Title</h1>
+      <h1 className="text-xl text-slate-900 dark:text-slate-100">Banner</h1>
     </div>
   );
 }
@@ -50,8 +50,8 @@ export function ProHeadings2() {
 export function AmateurHeadings3() {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl">Information</h2>
-      <h2 className="text-xl">Details About Your Purchase and What Happens Next</h2>
+      <h2 className="text-xl text-slate-900 dark:text-slate-100">Information</h2>
+      <h2 className="text-xl text-slate-900 dark:text-slate-100">Details About Your Purchase and What Happens Next</h2>
     </div>
   );
 }
@@ -70,9 +70,9 @@ export function ProHeadings3() {
 export function AmateurLandmarks() {
   return (
     <div>
-      <div className="border p-4 mb-4">Header Content</div>
-      <div className="border p-4 mb-4">Main Content</div>
-      <div className="border p-4 mb-4">Sidebar Content</div>
+      <div className="border border-slate-300 dark:border-slate-700 p-4 mb-4 text-slate-900 dark:text-slate-100">Header Content</div>
+      <div className="border border-slate-300 dark:border-slate-700 p-4 mb-4 text-slate-900 dark:text-slate-100">Main Content</div>
+      <div className="border border-slate-300 dark:border-slate-700 p-4 mb-4 text-slate-900 dark:text-slate-100">Sidebar Content</div>
     </div>
   );
 }
@@ -101,12 +101,12 @@ export function AmateurList() {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2">
-        <span>•</span>
-        <span>First item</span>
+        <span className="text-slate-900 dark:text-slate-100">•</span>
+        <span className="text-slate-900 dark:text-slate-100">First item</span>
       </div>
       <div className="flex items-center gap-2">
-        <span>•</span>
-        <span>Second item</span>
+        <span className="text-slate-900 dark:text-slate-100">•</span>
+        <span className="text-slate-900 dark:text-slate-100">Second item</span>
       </div>
     </div>
   );
@@ -127,13 +127,13 @@ export function ProList() {
 export function AmateurTable() {
   return (
     <div className="border border-slate-300 dark:border-slate-700 rounded">
-      <div className="flex border-b">
-        <div className="flex-1 p-2 font-semibold">Month</div>
-        <div className="flex-1 p-2 font-semibold">Revenue</div>
+      <div className="flex border-b border-slate-300 dark:border-slate-700">
+        <div className="flex-1 p-2 font-semibold text-slate-900 dark:text-slate-100">Month</div>
+        <div className="flex-1 p-2 font-semibold text-slate-900 dark:text-slate-100">Revenue</div>
       </div>
-      <div className="flex border-b">
-        <div className="flex-1 p-2">January</div>
-        <div className="flex-1 p-2">$10,000</div>
+      <div className="flex border-b border-slate-300 dark:border-slate-700">
+        <div className="flex-1 p-2 text-slate-900 dark:text-slate-100">January</div>
+        <div className="flex-1 p-2 text-slate-900 dark:text-slate-100">$10,000</div>
       </div>
     </div>
   );

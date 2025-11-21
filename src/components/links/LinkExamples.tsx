@@ -4,9 +4,9 @@
 export function AmateurLink1() {
   return (
     <div className="space-y-3">
-      <a href="/products" className="text-blue-600">Click here</a>
+      <a href="/products" className="text-blue-600 dark:text-blue-400">Click here</a>
       <br />
-      <a href="/contact" className="text-blue-600">Click here</a>
+      <a href="/contact" className="text-blue-600 dark:text-blue-400">Click here</a>
     </div>
   );
 }
@@ -63,7 +63,7 @@ export function ProLink2() {
 export function AmateurLink3() {
   return (
     <div>
-      <a href="/report.pdf" className="text-blue-600 underline">
+      <a href="/report.pdf" className="text-blue-600 dark:text-blue-400 underline">
         Download Report
       </a>
     </div>
@@ -89,7 +89,7 @@ export function ProLink3() {
 export function AmateurLink4() {
   return (
     <div>
-      <a href="/external" target="_blank" className="text-blue-600 underline">
+      <a href="/external" target="_blank" className="text-blue-600 dark:text-blue-400 underline">
         External Resource
       </a>
     </div>

@@ -6,7 +6,7 @@ export function AmateurKeyboard1() {
     <div className="space-y-3">
       <div 
         onClick={() => alert('Clicked')}
-        className="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer inline-block"
+        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer inline-block"
       >
         Click Me (div with onClick)
       </div>
@@ -32,10 +32,10 @@ export function ProKeyboard1() {
 export function AmateurKeyboard2() {
   return (
     <div className="space-y-3">
-      <button className="px-4 py-2 bg-blue-500 text-white rounded outline-none">
+      <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded outline-none">
         No Focus Indicator
       </button>
-      <a href="#" className="text-blue-600 outline-none">
+      <a href="#" className="text-blue-600 dark:text-blue-400 outline-none">
         Link with no focus
       </a>
     </div>
@@ -64,13 +64,13 @@ export function AmateurKeyboard3() {
   return (
     <div>
       <nav className="p-4 bg-slate-200 dark:bg-slate-800 mb-4">
-        <a href="/" className="mr-4">Home</a>
-        <a href="/about" className="mr-4">About</a>
-        <a href="/contact">Contact</a>
+        <a href="/" className="mr-4 text-slate-900 dark:text-slate-100">Home</a>
+        <a href="/about" className="mr-4 text-slate-900 dark:text-slate-100">About</a>
+        <a href="/contact" className="text-slate-900 dark:text-slate-100">Contact</a>
       </nav>
       <main className="p-4">
-        <h1>Main Content</h1>
-        <p>No skip link - keyboard users must tab through all navigation</p>
+        <h1 className="text-slate-900 dark:text-slate-100">Main Content</h1>
+        <p className="text-slate-700 dark:text-slate-300">No skip link - keyboard users must tab through all navigation</p>
       </main>
     </div>
   );

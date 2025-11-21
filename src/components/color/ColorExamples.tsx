@@ -3,8 +3,8 @@
 // 6.1 Text Contrast - Bad
 export function AmateurColor1() {
   return (
-    <div className="bg-white p-6 rounded">
-      <p className="text-gray-400 text-lg">
+    <div className="bg-white dark:bg-slate-900 p-6 rounded border border-slate-200 dark:border-slate-800">
+      <p className="text-gray-400 dark:text-slate-500 text-lg">
         Low contrast text (2.8:1) - hard to read
       </p>
     </div>
@@ -26,15 +26,15 @@ export function ProColor1() {
 export function AmateurColor2() {
   return (
     <div className="space-y-3">
-      <div className="p-3 bg-red-100 rounded text-red-800">
+      <div className="p-3 bg-red-100 dark:bg-red-950/30 rounded text-red-800 dark:text-red-300">
         Warning
       </div>
-      <div className="p-3 bg-green-100 rounded text-green-800">
+      <div className="p-3 bg-green-100 dark:bg-green-950/30 rounded text-green-800 dark:text-green-300">
         Success
       </div>
       <div className="flex gap-4">
-        <div className="w-16 h-16 bg-red-500 rounded"></div>
-        <div className="w-16 h-16 bg-blue-500 rounded"></div>
+        <div className="w-16 h-16 bg-red-500 dark:bg-red-600 rounded"></div>
+        <div className="w-16 h-16 bg-blue-500 dark:bg-blue-600 rounded"></div>
       </div>
     </div>
   );
